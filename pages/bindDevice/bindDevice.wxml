@@ -1,0 +1,146 @@
+<!--pages/bindDevice/bindDevice.wxml-->
+<view id="bindDevice">
+  <view class="bind-device-nav clearfix">
+    <!-- <view class="bind-device-nav-a on">
+      <text>设备绑定</text>
+      <view class="bind-device-nav-line"></view>
+    </view> -->
+    <navigator url="/pages/bindDevice/bindDevice" class="bind-device-nav-a on">
+      <text>设备绑定</text>
+      <view class="bind-device-nav-line"></view>
+    </navigator>
+    <navigator url="/pages/deviceQuery/deviceQuery" class="bind-device-nav-a">
+      <text>历史查询</text>
+      <view class="bind-device-nav-line"></view>
+    </navigator>
+
+    <!-- <view class="bind-device-nav-a">
+      <text>历史查询</text>
+      <view class="bind-device-nav-line"></view>
+    </view> -->
+  </view>
+
+  <view class="bind-device-in">
+    <view class="bind-device-box">
+      <input bindinput="setDevEui" bindfocus="setDevEui" bindblur="devEuiInput" value="{{devEui}}" class="bind-device-input" type="text" placeholder="请填写节点ID"/>
+      <view class="scanCode-icon" bindtap="scanCode" data-valname="devEui" hidden="{{scanHidden1}}">
+        <image src="../../assets/images/scan.png"></image>
+      </view>
+      <view class="bDevice-operate clearfix" hidden="{{closeHidden1}}">
+        <view class="bind-device-close" bindtap="clearVal" data-valname="devEui" data-closename="closeHidden1">
+          <image src="../../assets/images/close.png"></image>
+        </view>
+      </view>
+    </view>
+
+    <view class="bind-device-box">
+      <input bindinput="setNodeID" bindfocus="setNodeID" bindblur="nodeIDInput" focus="{{nodeIDFocus}}" value="{{nodeID}}" class="bind-device-input {{nodeIDFocusClass ? 'error' : ''}}" type="text" placeholder="请填写设备ID"/>
+      <view class="scanCode-icon" bindtap="scanCode" data-valname="nodeID" hidden="{{scanHidden2}}">
+        <image src="../../assets/images/scan.png"></image>
+      </view>
+      <view class="bDevice-operate clearfix" hidden="{{closeHidden2}}">
+        <view class="bind-device-close" bindtap="clearVal" data-valname="nodeID" data-closename="closeHidden2">
+          <image src="../../assets/images/close.png"></image>
+        </view>
+        <view class="bDevice-operate-line">|</view>
+        <view class="bDevice-operate-btn bDevice-operate-btn-ok" bindtap="setTimer">查询</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bind-device-content">
+    <view class="bindDevice-no-data" hidden="{{dataList.length > 0}}">
+      <image src="../../assets/images/box.png"></image>
+      <view class="bindDevice-no-data-h">暂无信息</view>
+      <view class="bindDevice-no-data-p">请填写设备ID及节点ID</view>
+    </view>
+    <view class="bDevice-info" hidden="{{dataList.length == 0}}">
+      <view class="bDevice-info-title">
+        <view class="bDevice-info-title-h">{{dataListNative.devModel}}</view>
+        <view class="bDevice-info-title-p">厂商：{{dataListNative.manName}}</view>
+      </view>
+      <view class="bDevice-info-cb clearfix">
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">数据一</view>
+          <view class="bDevice-info-box-p">{{dataList[0] !== undefined ? dataList[0].val : '--'}} <text class="bDevice-unit">{{dataList[0] !== undefined ? dataList[0].unit : ''}}</text></view>
+          <view class="bDevice-info-box-p" v-if="dataList[0].val1 !== undefined">{{dataList[0] !== undefined ? dataList[0].val1 : '--'}} <text class="bDevice-unit">{{dataList[0] !== undefined ? dataList[0].unit1 : ''}}</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">数据二</view>
+          <view class="bDevice-info-box-p">{{dataList[1] !== undefined ? dataList[1].val : '--'}} <text class="bDevice-unit">{{dataList[1] !== undefined ? dataList[1].unit : ''}}</text></view>
+          <view class="bDevice-info-box-p" v-if="dataList[1].val1 !== undefined">{{dataList[1] !== undefined ? dataList[1].val1 : '--'}} <text class="bDevice-unit">{{dataList[1] !== undefined ? dataList[1].unit1 : ''}}</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">数据三</view>
+          <view class="bDevice-info-box-p">{{dataList[2] !== undefined ? dataList[2].val : '--'}} <text class="bDevice-unit">{{dataList[2] !== undefined ? dataList[2].unit : ''}}</text></view>
+          <view class="bDevice-info-box-p" v-if="dataList[2].val1 !== undefined">{{dataList[2] !== undefined ? dataList[2].val1 : '--'}} <text class="bDevice-unit">{{dataList[2] !== undefined ? dataList[2].unit1 : ''}}</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">数据四</view>
+          <view class="bDevice-info-box-p">{{dataList[3] !== undefined ? dataList[3].val : '--'}} <text class="bDevice-unit">{{dataList[3] !== undefined ? dataList[3].unit : ''}}</text></view>
+          <view class="bDevice-info-box-p" v-if="dataList[3].val1 !== undefined">{{dataList[3] !== undefined ? dataList[3].val1 : '--'}} <text class="bDevice-unit">{{dataList[3] !== undefined ? dataList[3].unit1 : ''}}</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">数据五</view>
+          <view class="bDevice-info-box-p">{{dataList[4] !== undefined ? dataList[4].val : '--'}} <text class="bDevice-unit">{{dataList[4] !== undefined ? dataList[4].unit : ''}}</text></view>
+          <view class="bDevice-info-box-p" v-if="dataList[4].val1 !== undefined">{{dataList[4] !== undefined ? dataList[4].val1 : '--'}} <text class="bDevice-unit">{{dataList[4] !== undefined ? dataList[4].unit1 : ''}}</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">信号强度</view>
+          <view class="bDevice-info-box-p">{{dataList[5] !== undefined ? dataList[5].rssi : '--'}} <text class="bDevice-unit">dbm</text></view>
+        </view>
+        <view class="bDevice-info-box">
+          <view class="bDevice-info-box-h">信噪比</view>
+          <view class="bDevice-info-box-p">{{dataListNative.snr !== undefined ? dataListNative.snr : '--'}}</view>
+        </view>
+
+      </view>
+
+    </view>
+
+  </view>
+
+  <!-- 底部 -->
+  <view class="bindDevice-footer">
+    <view class="bindDevice-footer-logo">
+      <image src="../../assets/images/footer-logo.png"></image>
+    </view>
+    <view class="bindDevice-footer-op">
+      <view class="bindDevice-footer-op-wrap clearfix">
+        <view class="bindDevice-footer-btn bindDevice-footer-btn-red" bindtap="reset">RESET</view>
+        <view class="bindDevice-footer-btn bindDevice-footer-btn-white" bindtap="submit">PASS</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 密码框 -->
+  <view class="password-layout" wx:if="{{passwordLayout}}">
+    <view class="password-layout-bg" bindtap="closeLayout"></view>
+    <view class="password-layout-content">
+      <view class="bind-device-close" bindtap="closeLayout" style="float: none; position: absolute; top: 5px; right: 0;">
+        <image src="../../assets/images/close.png"></image>
+      </view>
+      <view class="password-layout-img">
+        <image src="../../assets/images/change.png"></image>
+      </view>
+      <view class="password-layout-p">
+        <view>该节点ID已绑定设备</view>
+        <view>若需绑定新的设备</view>
+        <view>请输入密码</view>
+      </view>
+
+      <view class="password-layout-enter">
+        <input id="password-input" bindinput="passwordChart" value="{{password}}" focus="{{autoFocus}}" class="password-layout-input" type="number"></input>
+        <view class="pLayout-sb" bindtap="reFocus">
+          <view class="pLayout-span" wx:for="{{spanList}}">{{item.val}}</view>
+        </view>
+
+      </view>
+
+    </view>
+
+  
+  </view>
+
+
+</view>

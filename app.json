@@ -1,0 +1,13 @@
+{
+  "pages": [
+    "pages/bindDevice/bindDevice",
+    "pages/deviceQuery/deviceQuery"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "设备绑定",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json"
+}

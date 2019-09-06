@@ -1,0 +1,295 @@
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
+
+page{
+  background: #4272ff;
+}
+
+/* 绑定设备样式 */
+/*清除浮动*/
+.clearfix:after{ 
+  display: block;
+  clear: both;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  visibility: hidden;
+  content: '.';
+}
+.bind-device-nav-a{
+  background: #ffffff;
+  float: left;
+  width: 50%;
+  text-align: center;
+  padding-top: 16rpx;
+}
+.bind-device-nav-a text{
+  font-size: 28rpx;
+  color: #34414C;
+}
+.bind-device-nav-a.on text{
+  color: #4272FF;
+}
+.bind-device-nav-line{
+  width: 36rpx;
+  height: 4rpx;
+  background: #4272FF;
+  margin: 10rpx auto 0;
+  opacity: 0;
+}
+.bind-device-nav-a.on .bind-device-nav-line{
+  opacity: 1;
+}
+.bind-device-in{
+  padding: 1rpx 32rpx 32rpx;
+  background: #fff;
+  border-radius: 0rpx 0rpx 48rpx 48rpx;
+}
+.bind-device-box{
+  position: relative;
+  margin-top: 32rpx;
+}
+.bind-device-input{
+  box-sizing: border-box;
+  width: 100%;
+  background: #F1F1F2;
+  border-radius: 30px;
+  height: 70rpx;
+  -webkit-appearance: none;
+  appearance: none;
+  font-size: 28rpx;
+  padding-right: 220rpx;
+  padding-left: 32rpx;
+  /* padding-left: 100rpx; */
+  border: 1px solid #F1F1F2;
+  outline: none;
+  box-shadow: none;
+}
+.bind-device-input.error{
+  border: 1px solid #FC3132;
+}
+.scanCode-icon{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  z-index: 10;
+  text-align: center;
+}
+.scanCode-icon image{
+  width: 48rpx;
+  height: 48rpx;
+  margin-top: 10rpx;
+}
+.bDevice-operate{
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 11;
+}
+.bind-device-close{
+  float: left;
+  width: 70rpx;
+  height: 70rpx;
+  background-size: 24px 24px;
+}
+.bind-device-close image{
+  width: 50rpx;
+  height: 50rpx;
+  margin-top: 10rpx;
+}
+.bDevice-operate-line{
+  float: left;
+  color: #C2C7CC;
+  margin-top: 12rpx;
+}
+.bDevice-operate-btn{
+  float: left;
+  line-height: 70rpx;
+  font-size: 30rpx;
+  color: #4272FF;
+  margin: 0 22rpx;
+}
+.bind-device-content{
+  padding-top: 32rpx;
+  padding-bottom: 180rpx;
+}
+.bindDevice-no-data{
+  text-align: center;
+  padding-top: 40rpx;
+}
+.bindDevice-no-data image{
+  display: block;
+  width: 329rpx;
+  margin: 0 auto;
+  height: 354rpx;
+}
+.bindDevice-no-data-h{
+  font-size: 36rpx;
+  color: rgba(255,255,255,0.65);
+}
+.bindDevice-no-data-p{
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.30);
+  margin-top: 12rpx;
+}
+
+
+
+.bDevice-info-title{
+ text-align: center;
+ padding-top: 40rpx;
+}
+.bDevice-info-title-h{
+  font-size: 48rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+.bDevice-info-title-p{
+  font-size: 32rpx;
+  color: rgba(255,255,255,0.65);
+  margin-top: 16rpx;
+}
+.bDevice-info-cb{
+  padding-top: 40rpx;
+}
+.bDevice-info-box{
+  box-sizing: border-box;
+  padding: 0 6%;
+  float: left;
+  width: 33%;
+  margin-top: 32rpx;
+}
+.bDevice-info-box-h{
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.65);
+}
+.bDevice-info-box-p{
+  font-size: 32rpx;
+  color: #ffffff;
+  margin-top: 10rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bDevice-unit{
+  font-size: 24rpx;
+}
+
+
+.bindDevice-footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.bindDevice-footer-logo{
+  text-align: center;
+  padding-bottom: 32rpx;
+  background: #4272ff;
+}
+.bindDevice-footer-logo image{
+  width: 400rpx;
+  height: 26rpx;
+  margin: 0 auto;
+}
+.bindDevice-footer-btn{
+  float: left;
+  width: 50%;
+  height: 96rpx;
+  line-height: 96rpx;
+  font-size: 36rpx;
+  text-align: center;
+}
+.bindDevice-footer-btn-red{
+  color: #FFFFFF;
+  background-image: linear-gradient(90deg, #FC3132 0%, #F67356 97%);
+  box-shadow: 0 30rpx 60rpx -24rpx rgba(255,107,66,0.45);
+}
+.bindDevice-footer-btn-white{
+  color: #4272FF;
+  background-image: linear-gradient(270deg, #FFFFFF 0%, #E0E8FF 100%);
+  box-shadow: 0 30rpx 60rpx -24rpx rgba(66,114,255,0.45);
+}
+
+.password-layout{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+}
+.password-layout-bg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.5)
+}
+.password-layout-content{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 540rpx;
+  height: 460rpx;
+  margin-left: -270rpx;
+  margin-top: -420rpx;
+  border-radius: 24rpx;
+  background: #fff;
+  overflow: hidden;
+}
+.password-layout-img{
+  text-align: center;
+  margin-top: 32rpx;
+}
+.password-layout-img image{
+  width: 124rpx;
+  height: 124rpx;
+}
+.password-layout-p{
+  margin-top: 20rpx;
+  font-size: 32rpx;
+  color: #34414C;
+  line-height: 44rpx;
+  text-align: center;
+}
+.password-layout-enter{
+  position: relative;
+  margin-top: 28rpx;
+}
+.password-layout-input{
+  position: absolute;
+  top: 0;
+  left: -10000rpx;
+  width: 150%;
+  height: 72rpx;
+  opacity: 0;
+  color: transparent;
+}
+.pLayout-sb{
+  text-align: center;
+}
+.pLayout-span{
+  display: inline-block;
+  vertical-align: middle;
+  width: 70rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 36rpx;
+  text-align: center;
+  margin: 0 4rpx;
+  background: #F9F9F9;
+  border-radius: 8rpx;
+}
