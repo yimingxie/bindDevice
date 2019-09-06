@@ -106,6 +106,7 @@ Page({
         timer: ''
       })
     }
+    
     this.getDeviceInfo(this.data.devEui)
     this.data.timer = setInterval(() => {
       this.getDeviceInfo(this.data.devEui)
