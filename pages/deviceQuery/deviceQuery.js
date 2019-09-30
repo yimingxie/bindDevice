@@ -58,11 +58,12 @@ Page({
    */
   onHide: function () {
     // 关闭定时器
-    clearInterval(this.data.timer)
-    this.setData({
-      timer: ''
-    })
+    // clearInterval(this.data.timer)
+    // this.setData({
+    //   timer: ''
+    // })
     console.log('onHide')
+    this.reset()
   },
 
   /**
@@ -70,18 +71,26 @@ Page({
    */
   onUnload: function () {
     // 关闭定时器
-    clearInterval(this.data.timer)
-    this.setData({
-      timer: ''
-    })
+    // clearInterval(this.data.timer)
+    // this.setData({
+    //   timer: ''
+    // })
     console.log('onUnload')
+    this.reset()
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    wx.showLoading({
+      title: '刷新中',
+    })
+    setTimeout(() => {
+      this.reset()
+      wx.stopPullDownRefresh()
+      wx.hideLoading()
+    }, 1000)
   },
 
   /**
@@ -158,16 +167,32 @@ Page({
         })
         let dataListTemp = []
         res.data.data.datas.forEach((item, i) => {
-          let tempObj = {
-            val: item.toFixed(2),
-            unit: res.data.data.unit
+          let valueFormat = item + ''
+          if (valueFormat.indexOf('0x') === 0) {
+            let tempObj = {
+              val: item,
+              unit: res.data.data.unit === 'null' ? '' : res.data.data.unit
+            }
+          } else {
+            let tempObj = {
+              val: parseFloat(item).toFixed(2),
+              unit: res.data.data.unit === 'null' ? '' : res.data.data.unit
+            }
           }
+          
           dataListTemp.push(tempObj)
         })
         if (res.data.data.datas1 !== undefined) {
           res.data.data.datas1.forEach((item, i) => {
-            dataListTemp[i].val1 = item.toFixed(2)
-            dataListTemp[i].unit1 = res.data.data.unit1
+            let valueFormat = item + ''
+            if (valueFormat.indexOf('0x') === 0) {
+              dataListTemp[i].val1 = item
+              dataListTemp[i].unit1 = res.data.data.unit1 === 'null' ? '' : res.data.data.unit1
+            } else {
+              dataListTemp[i].val1 = parseFloat(item).toFixed(2)
+              dataListTemp[i].unit1 = res.data.data.unit1 === 'null' ? '' : res.data.data.unit1
+            }
+            
           })
         }
         // 信号强度

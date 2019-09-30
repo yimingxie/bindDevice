@@ -33,6 +33,7 @@ App({
       }
     })
   },
+
   globalData: {
     userInfo: null,
     URL: 'https://iot.gidomino.com', // 全局域名
